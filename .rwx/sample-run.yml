@@ -4,7 +4,7 @@ base:
 
 tasks:
   - key: code
-    call: mint/git-clone 1.6.4
+    call: git/clone 1.6.6
     with:
       repository: https://github.com/rwx-cloud/ci-sample-repo.git
       ref: main
