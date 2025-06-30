@@ -6,7 +6,7 @@ tasks:
   - key: code
     call: mint/git-clone 1.6.4
     with:
-      repository: https://github.com/rwx-research/sample-repo-for-mint.git
+      repository: https://github.com/rwx-cloud/ci-sample-repo.git
       ref: main
 
   - key: example-tests
@@ -26,20 +26,20 @@ tasks:
   - key: debuggable-task
     use: code
     run: |
-      echo "You can debug this task via an SSH console using the Mint CLI."
-      echo "Install the Mint CLI following the instructions at " \
+      echo "You can debug this task via an SSH console using the RWX CLI."
+      echo "Install the RWX CLI following the instructions at " \
            "https://www.rwx.com/docs/mint/getting-started#installing-the-cli" \
-           "and then log in using mint login."
-      echo "Once you are logged into the Mint CLI, click the three dots menu" \
+           "and then log in using rwx login."
+      echo "Once you are logged into the RWX CLI, click the three dots menu" \
            "button for this task and press "Retry task" to retry this task and" \
            "enable the debugging session"
       if [[ "${{ task.attempt-number }}" != "1" ]]; then
-        echo "To connect to an SSH console for the task, run \`mint debug ${{ task.id }}\`"
+        echo "To connect to an SSH console for the task, run \`rwx debug ${{ task.id }}\`"
         echo "You can access environment variables from your session --" \
              "try echoing \$SAMPLE_ENVIRONMENT_VARIABLE"
-        mint-breakpoint
+        rwx-breakpoint
       fi
 
       exit 1
     env:
-      SAMPLE_ENVIRONMENT_VARIABLE: "welcome to mint-breakpoint!"
+      SAMPLE_ENVIRONMENT_VARIABLE: "welcome to rwx-breakpoint!"
