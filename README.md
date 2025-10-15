@@ -2,8 +2,14 @@
 
 [RWX](https://rwx.com) is a comprehensive CI/CD platform designed to move you beyond inefficient and simplistic workflows.
 
-RWX re-envisions every step of CI/CD so that you’re no longer running the same tasks over and over or combing through log files to find bugs.
+RWX re-envisions every step of CI/CD so that you're no longer running the same tasks over and over or combing through log files to find bugs.
 Move beyond the limitations of legacy tools and code how you want with RWX.
+
+### What You'll See in CI Runs
+
+- **Test Failures**: Some tests are intentionally designed to fail to demonstrate test result reporting
+- **Linting Errors**: The source code contains various ESLint violations (missing semicolons, unused variables, etc.)
+- **Debugging**: A task that demonstrates RWX's debugging capabilities
 
 ## Step 1: Install the CLI
 
@@ -45,9 +51,9 @@ You can verify you've authenticated successfully by running:
 rwx whoami
 ```
 
-## Step 3: Kick of your first run
+## Step 3: Kick off your first run
 
-Clone this repository and run the sample-run.yml workflow. Or if you'd prefer, check out the [documentation](https://www.rwx.com/docs/mint/guides/ci) to learn how to write your own workflows.
+This repository contains a real Node.js project with intentional issues. Clone this repository and run the sample-run.yml workflow. Or if you'd prefer, check out the [documentation](https://www.rwx.com/docs/mint/guides/ci) to learn how to write your own workflows.
 
 ```
 git clone git@github.com:rwx-cloud/ci-examples.git
@@ -58,3 +64,5 @@ cd ci-examples
 ```
 rwx run -f .rwx/sample-run.yml --title "Sample Run" --open
 ```
+
+You can run this example run multiple times, and you'll see that, on subsequent runs, some redundant tasks are cached.

@@ -1,45 +1,57 @@
+on:
+  github:
+    push:
+      if: ${{ event.git.branch == 'main' }}
+      init:
+        commit-sha: ${{ event.git.sha }}
+
 base:
   os: ubuntu 24.04
   tag: 1.1
 
 tasks:
   - key: code
-    call: git/clone 1.6.6
+    call: git/clone 1.6.9
     with:
-      repository: https://github.com/rwx-cloud/ci-sample-repo.git
-      ref: main
+      repository: https://github.com/rwx-cloud/ci-examples
+      ref: ${{ init.commit-sha }}
+
+  - key: node
+    call: nodejs/install 1.1.9
+    with:
+      node-version: "24.8.0"
+
+  - key: node-modules
+    use: [code, node]
+    agent:
+      tmpfs: true
+    run: npm install
+    filter:
+      - package.json
+      - package-lock.json
+
+  - key: docker-images
+    use: code
+    docker: preserve-data
+    run: docker compose pull
+    filter:
+      - docker-compose.yml
 
   - key: example-tests
-    use: code
-    run: ./run-tests.sh
+    use: [node-modules, docker-images]
+    docker: true
+    background-processes:
+      - key: postgres-redis
+        run: docker compose up
+        ready-check: rwx-docker-ready-check
+    run: npm test -- --json --outputFile=test-results.json
     outputs:
       test-results:
         - path: test-results.json
 
   - key: example-lint-failures
-    use: code
-    run: ./run-linter.sh
+    use: node-modules
+    run: npm run lint
     outputs:
       problems:
-        - matcher: tsc
-
-  - key: debuggable-task
-    use: code
-    run: |
-      echo "You can debug this task via an SSH console using the RWX CLI."
-      echo "Install the RWX CLI following the instructions at " \
-           "https://www.rwx.com/docs/mint/getting-started#installing-the-cli" \
-           "and then log in using rwx login."
-      echo "Once you are logged into the RWX CLI, click the three dots menu" \
-           "button for this task and press "Retry task" to retry this task and" \
-           "enable the debugging session"
-      if [[ "${{ task.attempt-number }}" != "1" ]]; then
-        echo "To connect to an SSH console for the task, run \`rwx debug ${{ task.id }}\`"
-        echo "You can access environment variables from your session --" \
-             "try echoing \$SAMPLE_ENVIRONMENT_VARIABLE"
-        rwx-breakpoint
-      fi
-
-      exit 1
-    env:
-      SAMPLE_ENVIRONMENT_VARIABLE: "welcome to rwx-breakpoint!"
+        - matcher: eslint
