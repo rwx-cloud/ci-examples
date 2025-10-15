@@ -1,0 +1,27 @@
+{
+  "name": "ci-examples-nodejs",
+  "version": "1.0.0",
+  "description": "A Node.js project for demonstrating CI/CD workflows with RWX",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/**/*.js test/**/*.js",
+    "lint:fix": "eslint src/**/*.js test/**/*.js --fix",
+    "start": "node src/index.js",
+    "dev": "node src/index.js"
+  },
+  "keywords": ["ci", "cd", "rwx", "nodejs", "testing"],
+  "author": "RWX Examples",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
