@@ -7,17 +7,17 @@ on:
 
 base:
   os: ubuntu 24.04
-  tag: 1.1
+  tag: 1.2
 
 tasks:
   - key: code
-    call: git/clone 1.6.9
+    call: git/clone 1.9.0
     with:
       repository: https://github.com/rwx-cloud/ci-examples
       ref: ${{ init.commit-sha }}
 
   - key: node
-    call: nodejs/install 1.1.9
+    call: nodejs/install 1.1.10
     with:
       node-version: "24.8.0"
 
