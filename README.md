@@ -1,9 +1,6 @@
 # Get started with RWX
 
-[RWX](https://rwx.com) is a comprehensive CI/CD platform designed to move you beyond inefficient and simplistic workflows.
-
-RWX re-envisions every step of CI/CD so that you're no longer running the same tasks over and over or combing through log files to find bugs.
-Move beyond the limitations of legacy tools and code how you want with RWX.
+[RWX](https://rwx.com) is the CI/CD platform for high velocity teams.
 
 ### What You'll See in CI Runs
 
