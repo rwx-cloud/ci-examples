@@ -9,7 +9,7 @@ base:
 
 tasks:
   - key: code
-    call: git/clone 1.9.4
+    call: git/clone 1.9.5
     with:
       repository: https://github.com/rwx-cloud/ci-examples
       ref: ${{ init.commit-sha }}
