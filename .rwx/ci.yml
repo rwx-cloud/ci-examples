@@ -21,8 +21,6 @@ tasks:
 
   - key: node-modules
     use: [code, node]
-    agent:
-      tmpfs: true
     run: npm install
     filter:
       - package.json
@@ -35,7 +33,7 @@ tasks:
     filter:
       - docker-compose.yml
 
-  - key: example-tests
+  - key: tests
     use: [node-modules, docker-images]
     docker: true
     background-processes:
