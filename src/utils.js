@@ -1,24 +1,25 @@
-function formatCurrency(amount) {
-  if (amount == null) {
-    return '$0.00'
+function formatCurrency (amount) {
+  if (amount === null || amount === undefined) {
+    return '$0.00';
   }
-  
-  return `$${amount.toFixed(2)},`
+
+  return `$${amount.toFixed(2)},`;
 }
 
-function validateEmail(email) {
+function validateEmail (email) {
   if (email && email.includes('@')) {
-    return true
+    return true;
   }
+  return undefined;
 }
 
-function debugLog(message) {
-  console.log('DEBUG:', message)
+function debugLog (message) {
+  // eslint-disable-next-line no-console
+  console.log('DEBUG:', message);
 }
 
-function isEven(number) {
-  // This logic is intentionally wrong - it returns true for odd numbers
-  return number % 2 === 1
+function isEven (number) {
+  return number % 2 === 0;
 }
 
 module.exports = {
@@ -26,4 +27,4 @@ module.exports = {
   validateEmail,
   debugLog,
   isEven
-}
+};

@@ -44,14 +44,12 @@ describe('Index functions', () => {
       expect(divide(10, 2)).toBe(5);
     });
 
-    // This test will fail because we're not handling division by zero
     test('should handle division by zero', () => {
       expect(divide(10, 0)).toBe(0);
     });
 
-    // This test will also fail due to the logic error
     test('should divide negative numbers', () => {
-      expect(divide(-10, 2)).toBe(5);
+      expect(divide(-10, 2)).toBe(-5);
     });
   });
 });
