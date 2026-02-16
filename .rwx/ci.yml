@@ -2,6 +2,10 @@ on:
   cli:
     init:
       commit-sha: ${{ event.git.sha }}
+  github:
+    push:
+      init:
+        commit-sha: ${{ event.git.sha }}
 
 base:
   image: ubuntu:24.04
@@ -33,7 +37,7 @@ tasks:
     filter:
       - docker-compose.yml
 
-  - key: tests
+  - key: test
     use: [node-modules, docker-images]
     docker: true
     background-processes:
@@ -45,7 +49,7 @@ tasks:
       test-results:
         - path: test-results.json
 
-  - key: example-lint-failures
+  - key: lint
     use: node-modules
     run: npm run lint
     outputs:
