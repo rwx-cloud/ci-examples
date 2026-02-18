@@ -2,12 +2,6 @@
 
 [RWX](https://rwx.com) is the CI/CD platform for high velocity teams.
 
-### What You'll See in CI Runs
-
-- **Test Failures**: Some tests are intentionally designed to fail to demonstrate test result reporting
-- **Linting Errors**: The source code contains various ESLint violations (missing semicolons, unused variables, etc.)
-- **Debugging**: A task that demonstrates RWX's debugging capabilities
-
 ## Step 1: Install the CLI
 
 With RWX, you can run tasks without having to push to a git repository.
@@ -50,16 +44,16 @@ rwx whoami
 
 ## Step 3: Kick off your first run
 
-This repository contains a real Node.js project with intentional issues. Clone this repository and run the sample-run.yml workflow. Or if you'd prefer, check out the [documentation](https://www.rwx.com/docs/mint/guides/ci) to learn how to write your own workflows.
+This repository contains an example Node.js project. Clone this repository and run the ci.yml workflow. Or if you'd prefer, check out the [documentation](https://www.rwx.com/docs/mint/guides/ci) to learn how to write your own workflows.
 
 ```
-git clone git@github.com:rwx-cloud/ci-examples.git
+git clone https://github.com/rwx-cloud/ci-examples.git
 ```
 ```
 cd ci-examples
 ```
 ```
-rwx run -f .rwx/sample-run.yml --title "Sample Run" --open
+rwx run .rwx/ci.yml --open
 ```
 
-You can run this example run multiple times, and you'll see that, on subsequent runs, some redundant tasks are cached.
+You can run this example run multiple times and you'll see that on subsequent runs all of the tasks will be cache hits.

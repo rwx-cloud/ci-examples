@@ -31,17 +31,17 @@ describe('Utils functions', () => {
 
   describe('isEven', () => {
     test('should identify even numbers', () => {
-      expect(isEven(2)).toBe(true); // This will fail - our function is wrong
-      expect(isEven(4)).toBe(true); // This will fail - our function is wrong
+      expect(isEven(2)).toBe(true);
+      expect(isEven(4)).toBe(true);
     });
 
     test('should identify odd numbers', () => {
-      expect(isEven(1)).toBe(false); // This will fail - our function is wrong
-      expect(isEven(3)).toBe(false); // This will fail - our function is wrong
+      expect(isEven(1)).toBe(false);
+      expect(isEven(3)).toBe(false);
     });
 
     test('should handle zero', () => {
-      expect(isEven(0)).toBe(true); // This will fail - 0 is even but our function is wrong
+      expect(isEven(0)).toBe(true);
     });
   });
 

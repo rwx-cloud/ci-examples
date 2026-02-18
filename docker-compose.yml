@@ -29,15 +29,6 @@ services:
       timeout: 5s
       retries: 5
 
-  adminer:
-    image: adminer:4.8.1
-    ports:
-      - "8080:8080"
-    depends_on:
-      - db
-    environment:
-      - ADMINER_DEFAULT_SERVER=db
-
 volumes:
   postgres_data:
   redis_data:

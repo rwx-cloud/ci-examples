@@ -2,6 +2,10 @@ on:
   cli:
     init:
       commit-sha: ${{ event.git.sha }}
+  github:
+    push:
+      init:
+        commit-sha: ${{ event.git.sha }}
 
 base:
   image: ubuntu:24.04
@@ -21,8 +25,6 @@ tasks:
 
   - key: node-modules
     use: [code, node]
-    agent:
-      tmpfs: true
     run: npm install
     filter:
       - package.json
@@ -35,7 +37,7 @@ tasks:
     filter:
       - docker-compose.yml
 
-  - key: example-tests
+  - key: test
     use: [node-modules, docker-images]
     docker: true
     background-processes:
@@ -47,7 +49,7 @@ tasks:
       test-results:
         - path: test-results.json
 
-  - key: example-lint-failures
+  - key: lint
     use: node-modules
     run: npm run lint
     outputs:
