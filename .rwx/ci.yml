@@ -13,13 +13,13 @@ base:
 
 tasks:
   - key: code
-    call: git/clone 2.0.4
+    call: git/clone 2.0.6
     with:
       repository: https://github.com/rwx-cloud/ci-examples
       ref: ${{ init.commit-sha }}
 
   - key: node
-    call: nodejs/install 1.1.12
+    call: nodejs/install 1.1.13
     with:
       node-version: "24.8.0"
 
